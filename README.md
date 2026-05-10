@@ -119,11 +119,11 @@ So sánh hai đoạn văn bản
 
 # Tác giả
 
-Quang Huy
-Phương Đông
+1. Quang Huy
+2. Phương Đông
 
-GitHub: https://github.com/huynq714
-GitHub: https://github.com/Eastern2k4
+3. GitHub: https://github.com/huynq714
+4. GitHub: https://github.com/Eastern2k4
 
 ## License
 
