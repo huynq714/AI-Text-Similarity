@@ -137,6 +137,4 @@ So sánh hai đoạn văn bản
 3. GitHub: https://github.com/huynq714
 4. GitHub: https://github.com/Eastern2k4
 
-## License
-
-MIT License
+## Dự án được thực hiện nhằm mục đích học tập và nghiên cứu.
