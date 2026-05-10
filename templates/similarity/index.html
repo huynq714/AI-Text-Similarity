@@ -1,39 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Text Similarity System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Similarity</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f8fafc;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            color: #0f172a;
+        }
+
+        .main-container {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .glass-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .title {
+            font-size: 2.7rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            border-radius: 18px !important;
+            border: 1px solid #dbeafe !important;
+            padding: 18px !important;
+            resize: vertical;
+            min-height: 220px;
+            background: #f8fafc !important;
+            transition: 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15) !important;
+        }
+
+        .btn-custom {
+            width: 50%%;
+            padding: 14px;
+            border-radius: 16px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .result-card {
+            margin-top: 35px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .score {
+            font-size: 4rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .label {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #cbd5e1;
+        }
+
+        .progress {
+            height: 28px;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: rgba(255,255,255,0.15);
+        }
+
+        .progress-bar {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 30px;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>Text Similarity System 🚀</h1>
 
-    <form method="post">
-        {% csrf_token %}
+<div class="container main-container">
 
-        <div>
-            {{ form.text1.label_tag }}
-            <br>
-            {{ form.text1 }}
+    <div class="glass-card">
+
+        <h1 class="title">AI Text Similarity</h1>
+
+        <p class="subtitle">
+            So sánh độ tương đồng giữa hai văn bản bằng AI Semantic Similarity
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="row g-4">
+
+                <div class="col-lg-6">
+                    <label class="form-label">Văn bản thứ nhất</label>
+                    {{ form.text1 }}
+                </div>
+
+                <div class="col-lg-6">
+                    <label class="form-label">Văn bản thứ hai</label>
+                    {{ form.text2 }}
+                </div>
+
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn-custom">
+                So sánh văn bản
+            </button>
+        </form>
+
+        {% if result %}
+
+        <div class="result-card">
+
+            <div class="score">
+                {{ result.score }}%
+            </div>
+
+            <div class="label">
+                {{ result.label }}
+            </div>
+
+            
+
         </div>
 
-        <br>
+        {% endif %}
 
-        <div>
-            {{ form.text2.label_tag }}
-            <br>
-            {{ form.text2 }}
+        <div class="footer-text">
+            Powered by Sentence Transformers & Django
         </div>
 
-        <br>
+    </div>
 
-        <button type="submit">So sánh</button>
-    </form>
+</div>
 
-    {% if result %}
-        <hr>
-        <h2>Kết quả</h2>
-        <p><strong>Độ tương đồng:</strong> {{ result.score }}%</p>
-        <p><strong>Đánh giá:</strong> {{ result.label }}</p>
-    {% endif %}
 </body>
 </html>

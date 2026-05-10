@@ -3,8 +3,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from .text_preprocessing import clean_text
 
+model = None
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
+
+def get_model():
+    global model
+    if model is None:
+        model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+    return model
 
 
 def get_similarity_label(score: float) -> str:
@@ -17,6 +23,8 @@ def get_similarity_label(score: float) -> str:
 
 
 def calculate_similarity(text1: str, text2: str) -> dict:
+    model = get_model()
+
     text1_clean = clean_text(text1)
     text2_clean = clean_text(text2)
 
